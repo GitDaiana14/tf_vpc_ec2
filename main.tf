@@ -12,7 +12,8 @@ resource "aws_subnet" "public_subnet" {
   cidr_block        = "192.168.40.0/28"
   map_public_ip_on_launch = true
   tags = {
-    Name = "public-subnet01-ceb04"
+    Name = "public-subnet01-ceb04-${var.pub-subnet01}"
+    public_subnet = var.pub-subnet01 
   }
 }
 
@@ -20,14 +21,16 @@ resource "aws_subnet" "private_subnet" {
   vpc_id            = aws_vpc.my_vpc.id
   cidr_block        = "192.168.40.16/28"
   tags = {
-    Name = "private-subnet01-ceb04"
+    Name = "private-subnet01-ceb04-${var.priv-subnet01}"
+    private_subnet = var.priv-subnet01
   }
 }
 
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.my_vpc.id
   tags = {
-    Name = "igw-ceb04"
+    Name = "igw-ceb04-${var.igw-ceb04}"
+    internet_gateway = var.igw-ceb04
   }
 }
 
@@ -37,6 +40,7 @@ resource "aws_nat_gateway" "nat" {
   depends_on    = [aws_internet_gateway.gw]
   tags = {
     Name = "nat-gw-ceb04"
+    nat_gateway = var.nat-gw-ceb04
   }
 }
 
@@ -54,6 +58,7 @@ resource "aws_route_table" "public_route_table" {
 
   tags = {
     Name = "pub-rt-ceb04"
+    pub_route_table = var.pub-rt-ceb04
   }
 }
 
@@ -72,6 +77,7 @@ resource "aws_route_table" "private_route_table" {
 
   tags = {
     Name = "priv-rt-ceb04"
+    priv_route_table = var.priv-rt-ceb04
   }
 }
 
