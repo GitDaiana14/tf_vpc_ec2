@@ -69,6 +69,22 @@ variable "priv-rt-ceb04"{
     default = "ceb-daiana-private-rt"
 }
 
+
+ #Aws Security Group 
+
+ variable "security_group" {
+    type = string
+    description = "AWS Security Group Name"
+    default = "allow-web"
+}
+
+#Aws instance
+variable "aws_instance" {
+    type = string
+    description = "Type of AWS insatance"
+    default = "t3.nano"
+}
+
 #SSH Key
 variable "ssh_key" { 
     type = string
